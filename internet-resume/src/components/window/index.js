@@ -29,7 +29,7 @@ const Window = ({ position }) => {
             </Icons>
           </StatusBar>
         </strong>
-        hoge
+        <InsideWindow>hoge</InsideWindow>
       </StyledWindow>
     </Draggable>
   )
@@ -42,9 +42,21 @@ const StyledWindow = styled.div`
   left: ${props => props.position.x}px;
   top: ${props => props.position.y}px;
   background: #fff;
-  border: solid 0.5px #666;
+  border: solid 1px #666;
   box-sizing: border-box;
 `
+
+const InsideWindow = styled.div`
+  width: calc(100% - 2px);
+  height: calc(100% - 21px);
+  background: #fff;
+  border-left: solid 1px #666;
+  border-right: solid 1px #666;
+  border-bottom: solid 1px #666;
+  box-sizing: border-box;
+  margin: 0 1px 1px 1px;
+`
+
 const StatusBar = styled.div`
   width: 100%;
   height: 20px;
