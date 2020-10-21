@@ -1,10 +1,23 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Draggable, { DraggableCore } from "react-draggable"
+import { useForm } from 'react-hook-form'
+import axios from "axios";
 
 const windowGap = 5
 const Window = ({ position, width, height }) => {
   const [dragged, changeDragState] = useState(false)
+  const [isSubmitted, updateSubmit] = useState(false);
+  const { register, handleSubmit } = useForm({
+    mode: 'onChange',
+  })
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateSubmit(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [isSubmitted]);
+
   const handleStart = () => {
     console.log("handleStart")
     changeDragState(true)
@@ -15,6 +28,28 @@ const Window = ({ position, width, height }) => {
   const handleStop = () => {
     console.log("handleStop")
   }
+
+  const submit = (values) => {
+    console.log(values)
+    const GOOGLE_ACTION = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf6cO6ON06TOV5H11W5HHJI0-wrIhC0QiwpitjWnTAzo9iRbg/formResponse";
+    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+    // PostのParm生成
+  const submitParams = new FormData()
+  submitParams.append("entry.624850384", values.ID)
+
+  // 実行
+  axios
+    .post(CORS_PROXY + GOOGLE_ACTION, submitParams)
+    .then(() => {
+      // window.location.href = '/' // 成功時
+      console.log("success");
+      updateSubmit(true);
+    })
+    .catch((error) => {
+      console.log(error) // 失敗時
+    })
+
+    }
   return (
     <Draggable
       onStart={() => handleStart()}
@@ -33,7 +68,20 @@ const Window = ({ position, width, height }) => {
               </Icons>
             </StatusBar>
           </strong>
-          <InsideWindow>hoge</InsideWindow>
+          <InsideWindow>
+            {isSubmitted 
+              ? <div>おわたよ</div> 
+              :
+                <>
+                  <form onSubmit={handleSubmit(submit)}>
+                    <label for="text">FacebookのID（ご自身のページのURLの末尾）</label>
+                    <input id="text" type="text" name="ID" placeholder="shinnosuke.komiya" required ref={register()}/>
+                    <button type="submit" name="button" value="送信"></button>
+                  </form>
+                  <iframe name="dummyIframe" style={{display: "none"}}></iframe>
+                </>
+            }
+          </InsideWindow>
         </StyledWindow>
         {dragged && (
           <>
