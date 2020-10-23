@@ -8,9 +8,15 @@ import HelpWindow from "./helpWindow";
 
 const windowGap = 5
 const refreshSec = 5000;
+const windowDuration = 100;
 const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
   const [dragged, changeDragState] = useState(false)
   const [isSubmitted, updateSubmit] = useState(false);
+  const [win1, updateWin1] = useState(false);
+  const [win2, updateWin2] = useState(false);
+  const [win3, updateWin3] = useState(false);
+  const [win4, updateWin4] = useState(false);
+  const [win5, updateWin5] = useState(false);
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
   })
@@ -26,12 +32,67 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
   const handleStart = () => {
     console.log("handleStart")
     changeDragState(true)
+    setTimeout(() => {
+      if(win1) updateWin1(false);
+      updateWin1(true);
+      console.log("on win1");
+      setTimeout(() => {
+        if(win2) updateWin2(false);
+        updateWin2(true);
+        console.log("on win2");
+        setTimeout(() => {
+          if(win3) updateWin3(false);
+          updateWin3(true);
+          console.log("on win3");
+          setTimeout(() => {
+            if(win4) updateWin4(false);
+            updateWin4(true);
+            console.log("on win4");
+            setTimeout(() => {
+              if(win5) updateWin5(false);
+              updateWin5(true);
+              console.log("on win5");
+            }, windowDuration);
+          }, windowDuration);
+        }, windowDuration);
+      }, windowDuration);
+    }, windowDuration);
+    // return () => clearTimeout(timer1);
   }
   const handleDrag = () => {
     console.log("handleDrag")
   }
   const handleStop = () => {
-    console.log("handleStop")
+    setTimeout(() => {
+      console.log("wait");
+      console.log("handleStop")
+      setTimeout(() => {
+        if(!win5) updateWin5(true);
+        updateWin5(false);
+        console.log("off win5");
+        setTimeout(() => {
+          if(!win4) updateWin4(true);
+          updateWin4(false);
+          console.log("off win4");
+          setTimeout(() => {
+            if(!win3) updateWin3(true);
+            updateWin3(false);
+            console.log("off win3");
+            setTimeout(() => {
+              if(!win2) updateWin2(true);
+              updateWin2(false);
+              console.log("off win2");
+              setTimeout(() => {
+                if(!win1) updateWin1(true);
+                updateWin1(false);
+                console.log("off win1");
+              }, windowDuration);
+            }, windowDuration);
+          }, windowDuration);
+        }, windowDuration);
+      }, windowDuration);
+    },windowDuration*5);
+
   }
 
   const submit = (values) => {
@@ -46,7 +107,6 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
     axios
       .post(CORS_PROXY + GOOGLE_ACTION, submitParams)
       .then(() => {
-        // window.location.href = '/' // 成功時
         console.log("success");
         updateSubmit(true);
       })
@@ -94,52 +154,61 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
         </StyledWindow>
         {dragged && (
           <>
-            <BugWindow
-              width={width}
-              height={height}
-              zIndex={-1}
-              position={{
-                x: position.x + windowGap,
-                y: position.y + windowGap,
-              }}
-            />
-            <BugWindow
-              width={width}
-              height={height}
-              zIndex={-2}
-              position={{
-                x: position.x + windowGap * 2,
-                y: position.y + windowGap * 2,
-              }}
-            />
-            <BugWindow
-              width={width}
-              height={height}
-              zIndex={-3}
-              position={{
-                x: position.x + windowGap * 3,
-                y: position.y + windowGap * 3,
-              }}
-            />
-
-            <BugWindow
-              width={width}
-              height={height}
-              zIndex={-4}
-              position={{
-                x: position.x + windowGap * 4,
-                y: position.y + windowGap * 4,
-              }}
-            />
-            <BugWindow
-              width={width}
-              height={height}
-              zIndex={-5}
-              position={{
-                x: position.x + windowGap * 5,
-                y: position.y + windowGap * 5,
-              }}
-            />
+            {win1 &&
+              <BugWindow
+                width={width}
+                height={height}
+                zIndex={-1}
+                position={{
+                  x: position.x + windowGap,
+                  y: position.y + windowGap,
+                }}
+              />
+            }
+            {win2 &&
+              <BugWindow
+                width={width}
+                height={height}
+                zIndex={-2}
+                position={{
+                  x: position.x + windowGap * 2,
+                  y: position.y + windowGap * 2,
+                }}
+              />
+            }
+            {win3 &&
+              <BugWindow
+                width={width}
+                height={height}
+                zIndex={-3}
+                position={{
+                  x: position.x + windowGap * 3,
+                  y: position.y + windowGap * 3,
+                }}
+              />
+            }
+            {win4 &&
+              <BugWindow
+                width={width}
+                height={height}
+                zIndex={-4}
+                position={{
+                  x: position.x + windowGap * 4,
+                  y: position.y + windowGap * 4,
+                }}
+              />
+            }
+            {win5 &&
+              <BugWindow
+                width={width}
+                height={height}
+                zIndex={-5}
+                position={{
+                  x: position.x + windowGap * 5,
+                  y: position.y + windowGap * 5,
+                }}
+              />
+            }
           </>
         )}
       </div>
