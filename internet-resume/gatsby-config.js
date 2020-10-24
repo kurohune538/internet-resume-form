@@ -11,7 +11,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Noto Sans JP']
+          families: ['Noto Sans JP:400, 700']
         }
       }
     }
