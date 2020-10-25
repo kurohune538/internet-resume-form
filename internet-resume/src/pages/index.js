@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { useWindowSize } from "react-use"
 import Layout from "../components/layout"
 import styled from "styled-components"
@@ -12,6 +12,7 @@ import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
 export default function Home() {
+
   const { width, height = 800 } = useWindowSize()
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
@@ -20,6 +21,9 @@ export default function Home() {
   const [visiblePrivacyModal, updatePrivacyModal] = useState(false); 
   if(height === "Infinity") height = 800;
 
+  useEffect(() => {
+    height = useWindowSize().height;
+  }, [])
   const handlePrivacy = () => {
     updatePrivacyModal(true);
   }
