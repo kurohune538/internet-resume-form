@@ -14,6 +14,7 @@ module.exports = {
           families: ['Noto Sans JP:400, 500, 700']
         }
       }
-    }
+    },
+    'gatsby-plugin-styled-components'
   ],
 }
