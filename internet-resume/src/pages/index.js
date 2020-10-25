@@ -18,6 +18,7 @@ export default function Home() {
   })
   const [visibleFbModal, updateFbModal] = useState(false); 
   const [visiblePrivacyModal, updatePrivacyModal] = useState(false); 
+  if(height === "Infinity") height = 800;
 
   const handlePrivacy = () => {
     updatePrivacyModal(true);

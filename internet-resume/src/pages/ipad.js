@@ -8,6 +8,7 @@ import styled from "styled-components"
 export default function Home() {
   const { width, height = 1194 } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false);
+  if(height === "Infinity") height = 1194;
   return (
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={height}>
