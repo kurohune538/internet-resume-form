@@ -142,7 +142,7 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp, isString
                     <FbForm onSubmit={handleSubmit(submit)}>
                       <InputItem>
                         <LabelWrapper>
-                          <Label htmlFor="text">あなたのfacebookのURL</Label><QuestionButton src="./question.png"></QuestionButton>
+                          <Label htmlFor="text">あなたのfacebookのURL</Label><QuestionButton src="../question.png"></QuestionButton>
                         </LabelWrapper>
                         <FormInput id="text" type="text" name="ID" placeholder="shinnosuke.komiya" required ref={register()}/>
                       </InputItem>
@@ -158,16 +158,16 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp, isString
             <InsideWindow><HelpWindow /></InsideWindow>
           }
           {isStrings &&
-            <InsideWindowFixed><Strings src="./strings.png" /></InsideWindowFixed>
+            <InsideWindowFixed><Strings src="../strings.png" /></InsideWindowFixed>
           }
           {isSunrise &&
-            <InsideWindowFixed><Sunrise src="./sunrise.png" /></InsideWindowFixed>
+            <InsideWindowFixed><Sunrise src="../sunrise.png" /></InsideWindowFixed>
           }
           {isRefresh &&
             <InsideWindowFixed>
               <RefreshBg>
                 <RefreshBtn onClick={() => {refreshPressed(true); window.location.href = "/ipad"}}>
-                  <Refresh src="./refresh.png" refresh={isRefreshPressed}/>
+                  <Refresh src="../refresh.png" refresh={isRefreshPressed}/>
                 </RefreshBtn>
               </RefreshBg>
               <TryTap>👆TRY TAP👆</TryTap>
@@ -255,7 +255,7 @@ const InsideWindow = styled.div`
   width: calc(100% - 16px);
   height: calc(100% - 32px);
   background: ${props => props.isForm ? "" : "#fff"};
-  background-image: ${props => props.isForm ? 'url("./formBg.png")' : ""};
+  background-image: ${props => props.isForm ? 'url("../formBg.png")' : ""};
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

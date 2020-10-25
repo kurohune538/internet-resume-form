@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={height}>
-        <Donut src="./donut.png" />
+        <Donut src="../donut.png" />
         {!isCloseHelpWindow &&
           <Window position={{ x: 100, y: 100 }} width={360} height={250} handleClose={() => closeWindow(true)} isForm={false} isHelp={true} zIndex={100}/>
         }
