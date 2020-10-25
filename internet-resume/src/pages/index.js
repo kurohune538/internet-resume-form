@@ -4,16 +4,31 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import { useForm } from 'react-hook-form'
 import axios from "axios";
+import Rodal from 'rodal';
+
+import FbModal from "../components/window/fbModal";
+import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
 export default function Home() {
   const { width, height } = useWindowSize()
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
   })
+  const [visibleFbModal, updateFbModal] = useState(false); 
+  const [visiblePrivacyModal, updatePrivacyModal] = useState(false); 
 
   const handlePrivacy = () => {
-    console.log("pra")
+    updatePrivacyModal(true);
   }
+
+  const handleCloseFbModal = () => {
+    updateFbModal(false);
+  }
+
+  const handleClosePrivacyPolicyModal = () => {
+    updatePrivacyModal(false);
+  }
+
   const submit = (values) => {
     console.log(values)
     const GOOGLE_ACTION = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScT19R9fiULc_rmPqY1U46sDfqM6HD-goHkAq235gs5H_YJDg/formResponse";
@@ -39,6 +54,12 @@ export default function Home() {
   return (
     <Layout overflow="scroll">
       <Wrapper>
+        <Rodal visible={visibleFbModal} customStyles={{width: "90%", height: "80%", borderRadius: 0, border: "solid 2px #1C4C9E", padding: 0}} showCloseButton={false}>
+          <FbModal handleCloseModal={handleCloseFbModal}/>
+        </Rodal>
+        <Rodal visible={visiblePrivacyModal} customStyles={{width: "90%", height: "80%", borderRadius: 0, border: "solid 2px #1C4C9E", padding: 0}} showCloseButton={false}>
+          <PrivacyPolicyModal handleCloseModal={handleClosePrivacyPolicyModal}/>
+        </Rodal>
         <Top height={height}>
           <Title>INTERNET<br />RIREKISYO</Title>
           <CursorIcon>&#x1f447;</CursorIcon>
@@ -76,7 +97,7 @@ export default function Home() {
             </FormItem>
             <FormItem>
               <LabelWrapper>
-                <FormLabel>あなたのFacebookのURL</FormLabel><QuestionButton src="./question.png"></QuestionButton>
+                <FormLabel>あなたのFacebookのURL</FormLabel><QuestionButton src="./question.png" onClick={() => updateFbModal(true)}></QuestionButton>
               </LabelWrapper>
               <FormInput placeholder="https://www.facebook.com/xxxxxx" name="fb" ref={register()} required></FormInput>
             </FormItem>
@@ -93,6 +114,7 @@ export default function Home() {
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 `;
 const Top = styled.div`
   display: flex;
@@ -100,6 +122,7 @@ const Top = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   height: ${props => props.height}px;
+  width: 100%;
 `;
 
 const Title = styled.div`
@@ -107,7 +130,7 @@ const Title = styled.div`
   text-align: left;
   font-size: 3.75rem;
   line-height: 3.375rem;
-  margin: 0 20px;
+  margin: 0 0  0 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: #1C4C9E;
 
