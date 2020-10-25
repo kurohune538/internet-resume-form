@@ -11,7 +11,7 @@ import Jello from 'react-reveal/Jello';
 import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
-let windowHeight = 800;
+let windowHeight = 650;
 
 export default function Home() {
   const { width, height } = useWindowSize()
@@ -20,7 +20,7 @@ export default function Home() {
   })
   const [visibleFbModal, updateFbModal] = useState(false); 
   const [visiblePrivacyModal, updatePrivacyModal] = useState(false); 
-  if(height === "Infinity") height = 800;
+  if(height === "Infinity") height = 650;
 
   useEffect(() => {
     windowHeight = height;
