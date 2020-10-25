@@ -11,9 +11,10 @@ import Jello from 'react-reveal/Jello';
 import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
-export default function Home() {
+const windowHeight = 800;
 
-  const { width, height = 800 } = useWindowSize()
+export default function Home() {
+  const { width, height } = useWindowSize()
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
   })
@@ -22,7 +23,7 @@ export default function Home() {
   if(height === "Infinity") height = 800;
 
   useEffect(() => {
-    height = useWindowSize().height;
+    windowHeight = height;
   }, [])
   const handlePrivacy = () => {
     updatePrivacyModal(true);
@@ -67,7 +68,7 @@ export default function Home() {
         <Rodal visible={visiblePrivacyModal} customStyles={{width: "90%", height: "80%", borderRadius: 0, border: "solid 2px #1C4C9E", padding: 0}} showCloseButton={false}>
           <PrivacyPolicyModal handleCloseModal={handleClosePrivacyPolicyModal}/>
         </Rodal>
-        <Top height={height}>
+        <Top height={windowHeight}>
           <Jello><Title>INTERNET<br />RIREKISYO</Title></Jello>
           <CursorIcon>&#x1f447;</CursorIcon>
         </Top>
