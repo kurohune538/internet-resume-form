@@ -12,7 +12,7 @@ import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
 export default function Home() {
-  const { width, height } = useWindowSize()
+  const { width, height = 800 } = useWindowSize()
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
   })
