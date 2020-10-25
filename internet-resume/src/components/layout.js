@@ -3,10 +3,12 @@ import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
   body {
+    max-width: ${props => props.maxWidth ? props.maxWidth : ""};
     overflow: ${props => props.overflow ? props.overflow : "hidden"};
     font-size: 16px;
     font-family: 'Noto Sans JP', sans-serif;
     height: 100%;
+    width: 100%;
     margin: 0;
     padding:0;
     background-image:

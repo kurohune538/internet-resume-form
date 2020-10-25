@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 import Draggable from "react-draggable"
 import { useForm } from 'react-hook-form'
 import axios from "axios";
@@ -9,7 +9,7 @@ import HelpWindow from "./helpWindow";
 const windowGap = 5
 const refreshSec = 5000;
 const windowDuration = 100;
-const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
+const Window = ({ position, width, height, handleClose, isForm, isHelp, isStrings, isSunrise, zIndex, isRefresh }) => {
   const [dragged, changeDragState] = useState(false)
   const [isSubmitted, updateSubmit] = useState(false);
   const [win1, updateWin1] = useState(false);
@@ -17,6 +17,7 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
   const [win3, updateWin3] = useState(false);
   const [win4, updateWin4] = useState(false);
   const [win5, updateWin5] = useState(false);
+  const [isRefreshPressed, refreshPressed] = useState(false);
   const { register, handleSubmit } = useForm({
     mode: 'onChange',
   })
@@ -122,7 +123,7 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
       handle="strong"
     >
       <div>
-        <StyledWindow position={position} width={width} height={height}>
+        <StyledWindow position={position} width={width} height={height} zIndex={zIndex}>
           <strong>
             <StatusBar>
               <Icons>
@@ -133,16 +134,21 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
             </StatusBar>
           </strong>
           {isForm &&
-            <InsideWindow>
+            <InsideWindow isForm={isForm}>
               {isSubmitted 
                 ? <div>おわたよ</div> 
                 :
                   <>
-                    <form onSubmit={handleSubmit(submit)}>
-                      <label htmlFor="text">FacebookのID（ご自身のページのURLの末尾）</label>
-                      <input id="text" type="text" name="ID" placeholder="shinnosuke.komiya" required ref={register()}/>
-                      <button type="submit" name="button" value="送信"></button>
-                    </form>
+                    <FbForm onSubmit={handleSubmit(submit)}>
+                      <InputItem>
+                        <LabelWrapper>
+                          <Label htmlFor="text">あなたのfacebookのURL</Label><QuestionButton src="./question.png"></QuestionButton>
+                        </LabelWrapper>
+                        <FormInput id="text" type="text" name="ID" placeholder="shinnosuke.komiya" required ref={register()}/>
+                      </InputItem>
+                      <PrivacyPolicy><span>プライバシーポリシー</span>はこちら</PrivacyPolicy>
+                      <SubmitButton type="submit" name="button">プライバシーポリシーに同意して送信</SubmitButton>
+                    </FbForm>
                     <iframe name="dummyIframe" style={{display: "none"}}></iframe>
                   </>
               }
@@ -150,6 +156,22 @@ const Window = ({ position, width, height, handleClose, isForm, isHelp }) => {
           }
           {isHelp &&
             <InsideWindow><HelpWindow /></InsideWindow>
+          }
+          {isStrings &&
+            <InsideWindowFixed><Strings src="./strings.png" /></InsideWindowFixed>
+          }
+          {isSunrise &&
+            <InsideWindowFixed><Sunrise src="./sunrise.png" /></InsideWindowFixed>
+          }
+          {isRefresh &&
+            <InsideWindowFixed>
+              <RefreshBg>
+                <RefreshBtn onClick={() => {refreshPressed(true); window.location.href = "/ipad"}}>
+                  <Refresh src="./refresh.png" refresh={isRefreshPressed}/>
+                </RefreshBtn>
+              </RefreshBg>
+              <TryTap>👆TRY TAP👆</TryTap>
+            </InsideWindowFixed>
           }
         </StyledWindow>
         {dragged && (
@@ -225,12 +247,18 @@ const StyledWindow = styled.div`
   background: #fff;
   border: solid 2px #1C4C9E;
   box-sizing: border-box;
+  z-index: ${props => props.zIndex};
+
 `
 
 const InsideWindow = styled.div`
   width: calc(100% - 16px);
   height: calc(100% - 32px);
-  background: #fff;
+  background: ${props => props.isForm ? "" : "#fff"};
+  background-image: ${props => props.isForm ? 'url("./formBg.png")' : ""};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   border-left: solid 2px #1C4C9E;
   border-right: solid 2px #1C4C9E;
   border-bottom: solid 2px #1C4C9E;
@@ -238,6 +266,10 @@ const InsideWindow = styled.div`
   margin: 0 8px 8px 8px;
   overflow: scroll;
 `
+const InsideWindowFixed = styled(InsideWindow)`
+  overflow: hidden;
+`;
+
 
 const StatusBar = styled.div`
   width: 100%;
@@ -276,4 +308,135 @@ const BugWindow = styled.div`
   background: #fff;
 `
 
+const FbForm = styled.form`
+  display: flex;
+  border: solid 2px #1C4C9E;
+  border-radius: 14px;
+  margin: 32px 20px;
+  background: #fff;
+  flex-direction: column;
+  padding: 36px 16px;
+`;
+const InputItem = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const LabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Label = styled.label`
+  color: #1C4C9E;
+  font-size: 0.875rem;
+  letter-spacing: 0.44px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+
+const FormInput = styled.input`
+  width: 100%;
+  background: #F7F9FA;
+  border: 2px solid #1C4C9E;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1C4C9E;
+  padding: 12px;
+  &::placeholder {
+    color: rgba(34,34,34,0.24);
+  }
+`;
+
+const PrivacyPolicy = styled.p`
+  color: #1C4C9E;
+  margin: 20px 0;
+  text-align: center;
+  span {
+    text-decoration: underline;
+  }
+`;
+
+const SubmitButton = styled.button`
+  background: linear-gradient(91.28deg, #396AFC 3.47%, #2948FF 94.97%);
+  border-radius: 12px;
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+`;
+
+const QuestionButton = styled.img`
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 8px;
+  margin-left: 5px;
+`;
+
+const Strings = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+const Sunrise = styled.img`
+  margin: 15px;
+  width: 313px;
+`;
+
+const RefreshBg = styled.div`
+  width: 100%;
+  height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFEA27;
+  border-bottom: solid 2px #1C4C9E;
+`;
+
+const RefreshBtn = styled.div`
+  width: 84px;
+  height: 84px;
+  background: #F94A21;
+  border: 2px solid #1C4C9E;
+  box-sizing: border-box;
+  border-radius: 12px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const styles = css`
+  animation: ${spin} 2s linear infinite;
+`;
+
+const Refresh = styled.img`
+  width: 57px;
+  ${props => props.refresh ? styles : ""}
+`;
+
+
+
+const TryTap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.44;
+  font-weight: bold;
+  height: 42px;
+  color: #1C4C9E;
+`;
 export default Window
