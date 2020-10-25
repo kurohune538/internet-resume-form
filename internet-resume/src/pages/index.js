@@ -11,7 +11,7 @@ import Jello from 'react-reveal/Jello';
 import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
 
-const windowHeight = 800;
+let windowHeight = 800;
 
 export default function Home() {
   const { width, height } = useWindowSize()
