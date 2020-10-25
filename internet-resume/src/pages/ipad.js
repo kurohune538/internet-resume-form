@@ -6,7 +6,7 @@ import styled from "styled-components"
 
 
 export default function Home() {
-  const { width, height } = useWindowSize()
+  const { width, height = 1194 } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false);
   return (
     <Layout overflow="hidden" maxWidth="1336px">
