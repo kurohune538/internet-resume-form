@@ -5,6 +5,8 @@ import styled from "styled-components"
 import { useForm } from 'react-hook-form'
 import axios from "axios";
 import Rodal from 'rodal';
+import Fade from 'react-reveal/Fade';
+import Jello from 'react-reveal/Jello';
 
 import FbModal from "../components/window/fbModal";
 import PrivacyPolicyModal from "../components/window/privacyPolicyModal";
@@ -61,48 +63,70 @@ export default function Home() {
           <PrivacyPolicyModal handleCloseModal={handleClosePrivacyPolicyModal}/>
         </Rodal>
         <Top height={height}>
-          <Title>INTERNET<br />RIREKISYO</Title>
+          <Jello><Title>INTERNET<br />RIREKISYO</Title></Jello>
           <CursorIcon>&#x1f447;</CursorIcon>
         </Top>
-        <Para>
-          ソーシャルディスタンスが推奨されていても、他者との関係性は続いていきます。私たちはインターネットやSNSを通して集めたピースをつなぎあわせ、直接会えない人の「その人らしさ」を推測しています。
-        </Para>
-        <Para>
-          しかし、ネット上に存在する情報は必ずしも本人の意図通りと限らず、その推測が現実のあなたと乖離している場合もあります。私たちの考える距離の弱みとは、実態が見えなくなることで推測が先行してしまうこと。        
-        </Para>
+        <Fade bottom>
+          <Para>
+            ソーシャルディスタンスが推奨されていても、他者との関係性は続いていきます。私たちはインターネットやSNSを通して集めたピースをつなぎあわせ、直接会えない人の「その人らしさ」を推測しています。
+          </Para>
+        </Fade>
+        <Fade bottom>
+          <Para>
+            しかし、ネット上に存在する情報は必ずしも本人の意図通りと限らず、その推測が現実のあなたと乖離している場合もあります。私たちの考える距離の弱みとは、実態が見えなくなることで推測が先行してしまうこと。        
+          </Para>
+        </Fade>
         {/* ここに画像 */}
-        <Para>
-          この作品では、インターネット上の情報を頼りに私たちがあなたの履歴書を作ります。履歴書は第三者があなたを知り、推測するためのメディアです。通常、履歴書はパーソナルでクローズドな情報ですが、インターネット履歴書は公開されたパブリックな情報だけをつなぎ合わせています。
-        </Para>
-        <Para>
-          何も見つからず真っ白な人もいれば、予想外の情報が載っているかもしれません。インターネットのあなたは、あなた自身とほとんど同じでしょうか？それとも全く違う別人でしょうか？
-        </Para>
+        <Fade bottom>
+          <Para>
+            この作品では、インターネット上の情報を頼りに私たちがあなたの履歴書を作ります。履歴書は第三者があなたを知り、推測するためのメディアです。通常、履歴書はパーソナルでクローズドな情報ですが、インターネット履歴書は公開されたパブリックな情報だけをつなぎ合わせています。
+          </Para>
+        </Fade>
+        <Fade bottom>
+          <Para>
+            何も見つからず真っ白な人もいれば、予想外の情報が載っているかもしれません。インターネットのあなたは、あなた自身とほとんど同じでしょうか？それとも全く違う別人でしょうか？
+          </Para>
+        </Fade>
         <FormWrapper>
           <Bubble src="./bubble.png"></Bubble>
-          <ParaWhite>
-            履歴を作成するために必要なすべての項目を記入し、送信ボタンを押してください。数日以内に、ご入力していただいたメールアドレス宛にpdfで履歴書をお送りいたします。
-          </ParaWhite>
+          <Fade bottom>
+            <ParaWhite>
+              履歴を作成するために必要なすべての項目を記入し、送信ボタンを押してください。数日以内に、ご入力していただいたメールアドレス宛にpdfで履歴書をお送りいたします。
+            </ParaWhite>
+          </Fade>
           <FormContents onSubmit={handleSubmit(submit)}>
-            <FormItem>
-              <FormLabel>氏名（漢字）</FormLabel>
-              <FormInput placeholder="山田 太郎" name="name" ref={register()} required></FormInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel>NAME（ローマ字）</FormLabel>
-              <FormInput placeholder="Yamada Taro" name="enName" ref={register()} required></FormInput>
-            </FormItem>
-            <FormItem>
-              <FormLabel>メールアドレス</FormLabel>
-              <FormInput placeholder="taro.yamada@gmail.com" name="email" ref={register()} required></FormInput>
-            </FormItem>
-            <FormItem>
-              <LabelWrapper>
-                <FormLabel>あなたのFacebookのURL</FormLabel><QuestionButton src="./question.png" onClick={() => updateFbModal(true)}></QuestionButton>
-              </LabelWrapper>
-              <FormInput placeholder="https://www.facebook.com/xxxxxx" name="fb" ref={register()} required></FormInput>
-            </FormItem>
-            <PrivacyPolicy><span onClick={handlePrivacy}>プライバシーポリシー</span>はこちら</PrivacyPolicy>
-            <SubmitButton type="submit">プライバシーポリシーに同意して送信</SubmitButton>
+            <Fade bottom>
+              <FormItem>
+                <FormLabel>氏名（漢字）</FormLabel>
+                <FormInput placeholder="山田 太郎" name="name" ref={register()} required></FormInput>
+              </FormItem>
+            </Fade>
+            <Fade bottom>
+              <FormItem>
+                <FormLabel>NAME（ローマ字）</FormLabel>
+                <FormInput placeholder="Yamada Taro" name="enName" ref={register()} required></FormInput>
+              </FormItem>
+            </Fade>
+            <Fade bottom>
+              <FormItem>
+                <FormLabel>メールアドレス</FormLabel>
+                <FormInput placeholder="taro.yamada@gmail.com" name="email" ref={register()} required></FormInput>
+              </FormItem>
+            </Fade>
+            <Fade bottom>
+              <FormItem>
+                <LabelWrapper>
+                  <FormLabel>あなたのFacebookのURL</FormLabel><QuestionButton src="./question.png" onClick={() => updateFbModal(true)}></QuestionButton>
+                </LabelWrapper>
+                <FormInput placeholder="https://www.facebook.com/xxxxxx" name="fb" ref={register()} required></FormInput>
+              </FormItem>
+            </Fade>
+            <Fade bottom>
+              <PrivacyPolicy><span onClick={handlePrivacy}>プライバシーポリシー</span>はこちら</PrivacyPolicy>
+            </Fade>
+            <Fade bottom>
+              <SubmitButton type="submit">プライバシーポリシーに同意して送信</SubmitButton>
+            </Fade>
           </FormContents>
         </FormWrapper>
       </Wrapper>
@@ -130,7 +154,6 @@ const Title = styled.div`
   text-align: left;
   font-size: 3.75rem;
   line-height: 3.375rem;
-  margin: 0 0  0 20px;
   font-family: Arial, Helvetica, sans-serif;
   color: #1C4C9E;
 
