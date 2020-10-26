@@ -38,7 +38,6 @@ export default function Home() {
   }
 
   const submit = values => {
-    console.log(values)
     const GOOGLE_ACTION =
       "https://docs.google.com/forms/u/0/d/e/1FAIpQLScT19R9fiULc_rmPqY1U46sDfqM6HD-goHkAq235gs5H_YJDg/formResponse"
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
@@ -53,7 +52,6 @@ export default function Home() {
     axios
       .post(CORS_PROXY + GOOGLE_ACTION, submitParams)
       .then(() => {
-        console.log("success")
         window.location.href = "/dmDone"
       })
       .catch(error => {

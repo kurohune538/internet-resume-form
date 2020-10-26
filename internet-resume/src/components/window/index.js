@@ -50,7 +50,6 @@ const Window = ({
   }, [isSubmitted])
 
   useEffect(() => {
-    console.log("changed")
     if(nameValue !== "" && enNameValue !== "" && urlValue !== "" && isChecked) {
       disableForm(false);
     } else {
@@ -80,10 +79,8 @@ const Window = ({
         }, windowDuration)
       }, windowDuration)
     }, windowDuration)
-    // return () => clearTimeout(timer1);
   }
   const handleDrag = () => {
-    console.log("handleDrag")
   }
   const handleStop = () => {
     setTimeout(() => {
@@ -126,7 +123,6 @@ const Window = ({
     checkToggle(!isChecked);
   }
   const submit = values => {
-    console.log(values)
     const GOOGLE_ACTION =
       "https://docs.google.com/forms/u/0/d/e/1FAIpQLSf6cO6ON06TOV5H11W5HHJI0-wrIhC0QiwpitjWnTAzo9iRbg/formResponse"
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
@@ -140,7 +136,6 @@ const Window = ({
     axios
       .post(CORS_PROXY + GOOGLE_ACTION, submitParams)
       .then(() => {
-        console.log("success")
         updateSubmit(true)
       })
       .catch(error => {
