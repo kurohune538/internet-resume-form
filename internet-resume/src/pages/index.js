@@ -14,17 +14,17 @@ import PrivacyPolicyModal from "../components/window/privacyPolicyModal"
 let windowHeight = 650
 
 export default function Home() {
-  const { width, height } = useWindowSize()
+  const { height } = useWindowSize()
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   })
   const [visibleFbModal, updateFbModal] = useState(false)
   const [visiblePrivacyModal, updatePrivacyModal] = useState(false)
-  if (height === "Infinity") height = 650
 
   useEffect(() => {
     windowHeight = height
   }, [])
+  
   const handlePrivacy = () => {
     updatePrivacyModal(true)
   }

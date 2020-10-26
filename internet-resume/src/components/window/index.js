@@ -9,19 +9,7 @@ import HelpWindow from "./helpWindow"
 const windowGap = 5
 const refreshSec = 30000
 const windowDuration = 100
-const Window = ({
-  position,
-  width,
-  height,
-  openSiroya,
-  handleClose,
-  isForm,
-  isHelp,
-  isStrings,
-  isSunrise,
-  zIndex,
-  isRefresh, 
-}) => {
+const Window = (props) => {
   const [dragged, changeDragState] = useState(false)
   const [isSubmitted, updateSubmit] = useState(false)
   const [win1, updateWin1] = useState(false)
@@ -40,6 +28,15 @@ const Window = ({
     mode: "onChange",
   })
 
+  const pressQuestion = () => {
+    props.openHelp();
+    console.log("open help")
+  }
+
+  const handleClose = () => {
+    props.handleClose();
+    console.log("close")
+  }
   useEffect(() => {
     if (isSubmitted) {
       const timer = setTimeout(() => {
@@ -148,30 +145,32 @@ const Window = ({
       onDrag={() => handleDrag()}
       onStop={() => handleStop()}
       handle="strong"
-      cancel=".help .helpButton"
+      // cancel=".help, .helpButton"
     >
       <div>
         <StyledWindow
-          position={position}
-          width={width}
-          height={height}
-          zIndex={zIndex}
+          position={props.position}
+          width={props.width}
+          height={props.height}
+          zIndex={props.zIndex}
         >
-          <strong>
-            {isHelp ? (
+            {props.isHelp ? (
               <HelpStatusBar>
                 <HelpCloseBtn
                   src="../helpClose.png"
                   onClick={() => handleClose()}
                   className="help"
                 ></HelpCloseBtn>
-                <Bars>
-                  <Bar></Bar>
-                  <Bar></Bar>
-                  <Bar></Bar>
-                </Bars>
+                <strong>
+                  <Bars>
+                    <Bar></Bar>
+                    <Bar></Bar>
+                    <Bar></Bar>
+                  </Bars>
+                </strong>
               </HelpStatusBar>
             ) : (
+              <strong>
               <StatusBar>
                 <Icons>
                   <Icon bg=""></Icon>
@@ -179,10 +178,10 @@ const Window = ({
                   <Icon bg=""></Icon>
                 </Icons>
               </StatusBar>
+              </strong>
             )}
-          </strong>
-          {isForm && (
-            <InsideWindow isForm={isForm}>
+          {props.isForm && (
+            <InsideWindow isForm={props.isForm}>
               {isSubmitted ? (
                 <DoneFormWrapper>
                   <DoneForm>
@@ -234,6 +233,7 @@ const Window = ({
                         <QuestionButton
                           src="../question.png"
                           className="helpButton"
+                          onClick={() => pressQuestion()}
                         ></QuestionButton>
                       </LabelWrapper>
                       <FormInput
@@ -261,22 +261,22 @@ const Window = ({
               )}
             </InsideWindow>
           )}
-          {isHelp && (
+          {props.isHelp && (
             <InsideWindow>
               <HelpWindow />
             </InsideWindow>
           )}
-          {isStrings && (
+          {props.isStrings && (
             <InsideWindowFixed>
               <Strings src="../strings.png" />
             </InsideWindowFixed>
           )}
-          {isSunrise && (
+          {props.isSunrise && (
             <InsideWindowFixed>
               <Sunrise src="../sunrise.png" />
             </InsideWindowFixed>
           )}
-          {isRefresh && (
+          {props.isRefresh && (
             <InsideWindowFixed>
               <RefreshBg>
                 <RefreshBtn
@@ -296,56 +296,56 @@ const Window = ({
           <>
             {win1 && (
               <BugWindow
-                width={width}
-                height={height}
+                width={props.width}
+                height={props.height}
                 zIndex={-1}
                 position={{
-                  x: position.x + windowGap,
-                  y: position.y + windowGap,
+                  x: props.position.x + windowGap,
+                  y: props.position.y + windowGap,
                 }}
               />
             )}
             {win2 && (
               <BugWindow
-                width={width}
-                height={height}
+                width={props.width}
+                height={props.height}
                 zIndex={-2}
                 position={{
-                  x: position.x + windowGap * 2,
-                  y: position.y + windowGap * 2,
+                  x: props.position.x + windowGap * 2,
+                  y: props.position.y + windowGap * 2,
                 }}
               />
             )}
             {win3 && (
               <BugWindow
-                width={width}
-                height={height}
+                width={props.width}
+                height={props.height}
                 zIndex={-3}
                 position={{
-                  x: position.x + windowGap * 3,
-                  y: position.y + windowGap * 3,
+                  x: props.position.x + windowGap * 3,
+                  y: props.position.y + windowGap * 3,
                 }}
               />
             )}
             {win4 && (
               <BugWindow
-                width={width}
-                height={height}
+                width={props.width}
+                height={props.height}
                 zIndex={-4}
                 position={{
-                  x: position.x + windowGap * 4,
-                  y: position.y + windowGap * 4,
+                  x: props.position.x + windowGap * 4,
+                  y: props.position.y + windowGap * 4,
                 }}
               />
             )}
             {win5 && (
               <BugWindow
-                width={width}
-                height={height}
+                width={props.width}
+                height={props.height}
                 zIndex={-5}
                 position={{
-                  x: position.x + windowGap * 5,
-                  y: position.y + windowGap * 5,
+                  x: props.position.x + windowGap * 5,
+                  y: props.position.y + windowGap * 5,
                 }}
               />
             )}
@@ -375,7 +375,7 @@ const InsideWindow = styled.div`
   background-image: ${props => (props.isForm ? 'url("../formBg.png")' : "")};
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   border-left: solid 2px #1c4c9e;
   border-right: solid 2px #1c4c9e;
   border-bottom: solid 2px #1c4c9e;
@@ -393,6 +393,7 @@ const StatusBar = styled.div`
   background: #fff;
   border-bottom: solid 2px #1c4c9e;
   box-sizing: border-box;
+  display: flex;
 `
 
 const Icons = styled.div`
@@ -416,6 +417,11 @@ const HelpStatusBar = styled(StatusBar)`
   height: 32px;
   display: flex;
   width: 100%;
+  strong {
+    height: 100%;
+    display: flex;
+    width: 100%;
+  }
 `
 
 const HelpCloseBtn = styled.img`

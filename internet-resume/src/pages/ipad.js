@@ -6,7 +6,7 @@ import styled from "styled-components"
 import Zoom from "react-reveal/Zoom"
 
 export default function Home() {
-  const { width, height = 1194 } = useWindowSize()
+  const { height = 1194 } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false)
   const [formPosX, changeFormPosX] = useState(Math.random() * 650)
   const [formPosY, changeFormPosY] = useState(Math.random() * 210)
@@ -76,6 +76,8 @@ export default function Home() {
           position={{ x: formPosX, y: formPosY }}
           width={440}
           height={620}
+          openHelp={() => closeWindow(true)}
+          handleClose={() => closeWindow(false)}
           isForm={true}
           zIndex={8}
         />
@@ -87,17 +89,14 @@ export default function Home() {
           zIndex={9}
         />
         {isCloseHelpWindow ? (
-          <Zoom>
             <Window
               position={{ x: helpPosX, y: helpPosY }}
               width={360}
               height={477}
-              handleClose={() => closeWindow(true)}
-              openSiroya={() => closeWindow(false)}
+              handleClose={() => closeWindow(false)}
               isHelp={true}
               zIndex={100}
             />
-          </Zoom>
         ) : null}
       </Wrapper>
     </Layout>
