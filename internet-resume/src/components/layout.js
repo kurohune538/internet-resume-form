@@ -2,9 +2,12 @@ import React from "react"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    overflow: ${props => (props.overflow ? props.overflow : "")};
+  }
   body {
-    max-width: ${props => props.maxWidth ? props.maxWidth : ""};
-    overflow: ${props => props.overflow ? props.overflow : "hidden"};
+    max-width: ${props => (props.maxWidth ? props.maxWidth : "")};
+    overflow: ${props => (props.overflow ? props.overflow : "hidden")};
     font-size: 16px;
     font-family: 'Noto Sans JP', sans-serif;
     height: 100%;
@@ -45,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
 export default function Layout({ children, overflow }) {
   return (
     <>
-      <GlobalStyle theme="purple" overflow={overflow}/>
+      <GlobalStyle theme="purple" overflow={overflow} />
       {children}
     </>
   )
