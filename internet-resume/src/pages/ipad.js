@@ -3,7 +3,6 @@ import { useWindowSize } from "react-use"
 import Layout from "../components/layout"
 import Window from "../components/window"
 import styled from "styled-components"
-import Zoom from "react-reveal/Zoom"
 
 export default function Home() {
   const { height = 1194 } = useWindowSize()
@@ -18,6 +17,7 @@ export default function Home() {
   const [sunrisePosY, changeSunrisePosY] = useState(Math.random() * 550)
   const [stringPosX, changeStringPosX] = useState(Math.random() * 900)
   const [stringPosY, changeStringPosY] = useState(Math.random() * 600)
+  const [wrapperHeight, changeHeight] = useState(600);
   useEffect(() => {
     changeFormPosX(Math.random() * 1000)
     changeFormPosY(Math.random() * 600)
@@ -29,10 +29,11 @@ export default function Home() {
     changeSunrisePosY(Math.random() * 550)
     changeStringPosX(Math.random() * 900)
     changeStringPosY(Math.random() * 600)
+    changeHeight(height);
   }, [])
   return (
     <Layout overflow="hidden" maxWidth="1336px">
-      <Wrapper height={height}>
+      <Wrapper height={wrapperHeight}>
         <Donut src="../donut.png" />
         <Window
           position={{ x: stringPosX, y: stringPosY }}
