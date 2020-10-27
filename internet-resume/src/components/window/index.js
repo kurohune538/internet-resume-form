@@ -257,7 +257,7 @@ const Window = (props) => {
                       />
                     </InputItem>
                     <PrivacyPolicy>
-                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span onClick={() => openPrivacy()}>プライバシーポリシー</span>に同意
+                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span className="formItem" onClick={() => openPrivacy()}>プライバシーポリシー</span>に同意
                     </PrivacyPolicy>
                     <SubmitButton type="submit" name="button" disabled={formDisabled} className="formItem">
                       送信
@@ -272,13 +272,13 @@ const Window = (props) => {
             </InsideWindow>
           )}
           {props.isPrivacy && 
-            <InsideWindow className="handle">
-              <PrivacyWindow className="formItem" />
+            <InsideWindow className="formItem">
+              <PrivacyWindow />
             </InsideWindow>
           }
           {props.isHelp && (
-            <InsideWindow className="handle">
-              <HelpWindow className="formItem" />
+            <InsideWindow className="formItem">
+              <HelpWindow />
             </InsideWindow>
           )}
           {props.isStrings && (
