@@ -30,7 +30,7 @@ export default function Home() {
   const [mousePosY, changeMousePosY] = useState(Math.random() * 994)
   const [otherPosX, changeOtherPosX] = useState(Math.random() * 954)
   const [otherPosY, changeOtherPosY] = useState(Math.random() * 520)
-  const [wrapperHeight, changeHeight] = useState(760);
+  const [wrapperHeight, changeHeight] = useState(760)
 
   useEffect(() => {
     changeFormPosX(Math.random() * 754)
@@ -54,16 +54,13 @@ export default function Home() {
     changeOtherPosX(Math.random() * 954)
     changeOtherPosY(Math.random() * 520)
 
-    changeHeight(height);
+    changeHeight(height)
   }, [])
   return (
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={wrapperHeight}>
-      <Draggable
-      handle=""
-      cancel=""
-    >
-        <Donut src="../donut.png" />
+        <Draggable handle="" cancel="">
+          <Donut src="../donut.png" />
         </Draggable>
         <Window
           position={{ x: stringPosX, y: stringPosY }}

@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 import HelpWindow from "./helpWindow"
-import PrivacyWindow from "./privacyWindow";
+import PrivacyWindow from "./privacyWindow"
 
 const windowGap = 5
 const refreshSec = 30000
 const windowDuration = 100
-const Window = (props) => {
+const Window = props => {
   const [dragged, changeDragState] = useState(false)
   const [isSubmitted, updateSubmit] = useState(false)
   const [win1, updateWin1] = useState(false)
@@ -18,31 +18,31 @@ const Window = (props) => {
   const [win3, updateWin3] = useState(false)
   const [win4, updateWin4] = useState(false)
   const [win5, updateWin5] = useState(false)
-  const [isRefreshPressed, refreshPressed] = useState(false);
-  const [formDisabled, disableForm] = useState(true);
-  const [nameValue, changeName] = useState("");
-  const [enNameValue, changeEnName] = useState("");
-  const [urlValue, changeUrl] = useState("");
-  const [isChecked, checkToggle] = useState(false);
+  const [isRefreshPressed, refreshPressed] = useState(false)
+  const [formDisabled, disableForm] = useState(true)
+  const [nameValue, changeName] = useState("")
+  const [enNameValue, changeEnName] = useState("")
+  const [urlValue, changeUrl] = useState("")
+  const [isChecked, checkToggle] = useState(false)
 
   const { register, handleSubmit } = useForm({
     mode: "onChange",
   })
 
   const pressQuestion = () => {
-    props.openHelp();
+    props.openHelp()
     console.log("open help")
   }
 
   const handleClose = () => {
-    props.handleClose();
+    props.handleClose()
     console.log("close")
   }
   const closePrivacy = () => {
-    props.closePrivacy();
+    props.closePrivacy()
   }
   const openPrivacy = () => {
-    props.openPrivacy();
+    props.openPrivacy()
   }
   useEffect(() => {
     if (isSubmitted) {
@@ -54,12 +54,17 @@ const Window = (props) => {
   }, [isSubmitted])
 
   useEffect(() => {
-    if(nameValue !== "" && enNameValue !== "" && urlValue !== "" && isChecked) {
-      disableForm(false);
+    if (
+      nameValue !== "" &&
+      enNameValue !== "" &&
+      urlValue !== "" &&
+      isChecked
+    ) {
+      disableForm(false)
     } else {
-      disableForm(true);
+      disableForm(true)
     }
-  },[nameValue, enNameValue, urlValue, isChecked])
+  }, [nameValue, enNameValue, urlValue, isChecked])
 
   const handleStart = () => {
     changeDragState(true)
@@ -84,8 +89,7 @@ const Window = (props) => {
       }, windowDuration)
     }, windowDuration)
   }
-  const handleDrag = () => {
-  }
+  const handleDrag = () => {}
   const handleStop = () => {
     setTimeout(() => {
       setTimeout(() => {
@@ -111,20 +115,20 @@ const Window = (props) => {
     }, windowDuration * 5)
   }
 
-  const nameChanged = (e) => {
+  const nameChanged = e => {
     changeName(e.target.value)
   }
 
-  const enNameChanged = (e) => {
+  const enNameChanged = e => {
     changeEnName(e.target.value)
   }
 
-  const urlChanged = (e) => {
+  const urlChanged = e => {
     changeUrl(e.target.value)
   }
 
-  const changeChecked = (e) => {
-    checkToggle(!isChecked);
+  const changeChecked = e => {
+    checkToggle(!isChecked)
   }
   const submit = values => {
     const GOOGLE_ACTION =
@@ -162,23 +166,25 @@ const Window = (props) => {
           zIndex={props.zIndex}
           className="handle"
         >
-            {props.isHelp || props.isPrivacy ? (
-              <HelpStatusBar>
-                <HelpCloseBtn
-                  src="../helpClose.png"
-                  onClick={props.isHelp ? () => handleClose() : () => closePrivacy()}
-                  className="help"
-                ></HelpCloseBtn>
-                <strong>
-                  <Bars>
-                    <Bar></Bar>
-                    <Bar></Bar>
-                    <Bar></Bar>
-                  </Bars>
-                </strong>
-              </HelpStatusBar>
-            ) : (
+          {props.isHelp || props.isPrivacy ? (
+            <HelpStatusBar>
+              <HelpCloseBtn
+                src="../helpClose.png"
+                onClick={
+                  props.isHelp ? () => handleClose() : () => closePrivacy()
+                }
+                className="help"
+              ></HelpCloseBtn>
               <strong>
+                <Bars>
+                  <Bar></Bar>
+                  <Bar></Bar>
+                  <Bar></Bar>
+                </Bars>
+              </strong>
+            </HelpStatusBar>
+          ) : (
+            <strong>
               <StatusBar>
                 <Icons>
                   <Icon bg=""></Icon>
@@ -186,24 +192,33 @@ const Window = (props) => {
                   <Icon bg=""></Icon>
                 </Icons>
               </StatusBar>
-              </strong>
-            )}
+            </strong>
+          )}
           {props.isForm && (
             <InsideWindowForm isForm={props.isForm} className="handle">
               {isSubmitted ? (
-                  <DoneFormWrapper>
-                    <DoneForm>
-                      <DoneTitle>送信完了✌</DoneTitle>
-                      <NowSearchingWrapper>
-                        <BoldText>NOW SEARCHING ... 🔍</BoldText>
-                        <ProgressBar>
-                          <ProgressContent isSubmitted={isSubmitted}></ProgressContent>
-                        </ProgressBar>
-                        <ContentsSentence>ただいま履歴書を作成中です。<br /> 他の作品の展示をまわりながら、 <br /><span>10~15分程お待ちください。</span></ContentsSentence>
-                        <ContentsSentence>プリンターから履歴書が出力されたら、 <br />下の封筒に入れてお持ち帰りください。</ContentsSentence>
-                      </NowSearchingWrapper>
-                    </DoneForm>
-                  </DoneFormWrapper>
+                <DoneFormWrapper>
+                  <DoneForm>
+                    <DoneTitle>送信完了✌</DoneTitle>
+                    <NowSearchingWrapper>
+                      <BoldText>NOW SEARCHING ... 🔍</BoldText>
+                      <ProgressBar>
+                        <ProgressContent
+                          isSubmitted={isSubmitted}
+                        ></ProgressContent>
+                      </ProgressBar>
+                      <ContentsSentence>
+                        ただいま履歴書を作成中です。
+                        <br /> 他の作品の展示をまわりながら、 <br />
+                        <span>10~15分程お待ちください。</span>
+                      </ContentsSentence>
+                      <ContentsSentence>
+                        プリンターから履歴書が出力されたら、 <br />
+                        下の封筒に入れてお持ち帰りください。
+                      </ContentsSentence>
+                    </NowSearchingWrapper>
+                  </DoneForm>
+                </DoneFormWrapper>
               ) : (
                 <>
                   <FbForm onSubmit={handleSubmit(submit)}>
@@ -258,9 +273,23 @@ const Window = (props) => {
                       />
                     </InputItem>
                     <PrivacyPolicy>
-                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span className="formItem" onClick={() => openPrivacy()}>プライバシーポリシー</span>に同意
+                      <input
+                        type="checkbox"
+                        onChange={e => changeChecked(e)}
+                        checked={isChecked}
+                        className="formItem"
+                      />
+                      <span className="formItem" onClick={() => openPrivacy()}>
+                        プライバシーポリシー
+                      </span>
+                      に同意
                     </PrivacyPolicy>
-                    <SubmitButton type="submit" name="button" disabled={formDisabled} className="formItem">
+                    <SubmitButton
+                      type="submit"
+                      name="button"
+                      disabled={formDisabled}
+                      className="formItem"
+                    >
                       送信
                     </SubmitButton>
                   </FbForm>
@@ -272,11 +301,11 @@ const Window = (props) => {
               )}
             </InsideWindowForm>
           )}
-          {props.isPrivacy && 
+          {props.isPrivacy && (
             <InsideWindow className="formItem">
               <PrivacyWindow />
             </InsideWindow>
-          }
+          )}
           {props.isHelp && (
             <InsideWindow className="formItem">
               <HelpWindow />
@@ -301,7 +330,11 @@ const Window = (props) => {
                     window.location.href = "/ipad"
                   }}
                 >
-                  <Refresh src="../refresh.png" refresh={isRefreshPressed} className="formItem"　/>
+                  <Refresh
+                    src="../refresh.png"
+                    refresh={isRefreshPressed}
+                    className="formItem"
+                  />
                 </RefreshBtn>
               </RefreshBg>
               <TryTap>👆TRY TAP👆</TryTap>
@@ -401,12 +434,10 @@ const InsideWindow = styled.div`
 `
 const InsideWindowForm = styled(InsideWindow)`
   height: calc(100% - 32px);
-
-`;
+`
 const InsideWindowFixed = styled(InsideWindow)`
   overflow: hidden;
   height: calc(100% - 32px);
-
 `
 
 const StatusBar = styled.div`
@@ -536,9 +567,8 @@ const PrivacyPolicy = styled.p`
   }
 `
 
-
 const SubmitButton = styled.button`
-  opacity: ${props => props.disabled ? 0.5 : 1};
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
   background: linear-gradient(91.28deg, #396afc 3.47%, #2948ff 94.97%);
   border-radius: 12px;
   color: #fff;
@@ -623,19 +653,19 @@ const DoneFormWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-`;
+`
 const DoneForm = styled.div`
   display: flex;
   width: 90%;
   background: #fff;
-  border: 2px solid #1C4C9E;
+  border: 2px solid #1c4c9e;
   box-sizing: border-box;
-  border-radius: 14px;  
+  border-radius: 14px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 48px;
-`;
+`
 
 const DoneTitle = styled.h1`
   font-weight: bold;
@@ -643,9 +673,9 @@ const DoneTitle = styled.h1`
   line-height: 1.5rem;
   text-align: center;
   width: 100%;
-  color: #1C4C9E;
+  color: #1c4c9e;
   margin-top: 48px;
-`;
+`
 
 const NowSearchingWrapper = styled.div`
   margin-top: 40px;
@@ -654,27 +684,27 @@ const NowSearchingWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const BoldText = styled.p`
   font-weight: bold;
   font-size: 0.875rem;
   line-height: 1.5rem;
-  color: #1C4C9E;
+  color: #1c4c9e;
   text-align: center;
   margin-bottom: 12px;
-`;
+`
 
 const ProgressBar = styled.div`
   height: 32px;
   width: 224px;
-  background: #F7F9FA;
-  border: 2px solid #1C4C9E;
+  background: #f7f9fa;
+  border: 2px solid #1c4c9e;
   box-sizing: border-box;
   border-radius: 20px;
   margin-bottom: 30px;
   position: relative;
-`;
+`
 
 const length = keyframes`
   0% {
@@ -684,36 +714,35 @@ const length = keyframes`
   100% {
     width: 70%;
   }
-`;
+`
 
 const lengthStyle = css`
   animation: ${length} 3s ease-out;
-  animation-fill-mode: forwards;  
+  animation-fill-mode: forwards;
 `
 
 const ProgressContent = styled.div`
-position: absolute;
-left: -2px;
-top: -2px;
-width: 0;
-background: #FFABD1;
-border: 2px solid #1C4C9E;
-box-sizing: content-box;
-border-radius: 20px;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 0;
+  background: #ffabd1;
+  border: 2px solid #1c4c9e;
+  box-sizing: content-box;
+  border-radius: 20px;
   height: 100%;
   ${lengthStyle}
-`;
-
+`
 
 const ContentsSentence = styled.p`
   font-size: 0.875rem;
   line-height: 1.5rem;
   text-align: center;
   margin-bottom: 20px;
-  color: #1C4C9E;
+  color: #1c4c9e;
   span {
     font-weight: bold;
   }
-`;
+`
 
 export default Window

@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import Rodal from "rodal"
+import withReveal from "react-reveal/withReveal";
 import Fade from "react-reveal/Fade"
 import Jello from "react-reveal/Jello"
 
@@ -24,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     windowHeight = height
   }, [])
-  
+
   const handlePrivacy = () => {
     updatePrivacyModal(true)
   }
@@ -122,13 +123,13 @@ export default function Home() {
         </Fade>
         <FormWrapper>
           <Bubble src="./bubble.png"></Bubble>
-          <Fade bottom distance="30px">
+          <StyledFade bottom distance="30px">
             <ParaWhite>
               履歴を作成するために必要なすべての項目を記入し、送信ボタンを押してください。数日以内に、ご入力していただいたメールアドレス宛にpdfで履歴書をお送りいたします。
             </ParaWhite>
-          </Fade>
+          </StyledFade>
           <FormContents onSubmit={handleSubmit(submit)}>
-            <Fade bottom distance="30px">
+            <StyledFade bottom distance="30px">
               <FormItem>
                 <FormLabel>フルネーム（漢字）</FormLabel>
                 <FormInput
@@ -138,8 +139,8 @@ export default function Home() {
                   required
                 ></FormInput>
               </FormItem>
-            </Fade>
-            <Fade bottom distance="30px">
+            </StyledFade>
+            <StyledFade bottom distance="30px">
               <FormItem>
                 <FormLabel>フルネーム（ローマ字）</FormLabel>
                 <FormInput
@@ -149,8 +150,8 @@ export default function Home() {
                   required
                 ></FormInput>
               </FormItem>
-            </Fade>
-            <Fade bottom distance="30px">
+            </StyledFade>
+            <StyledFade bottom distance="30px">
               <FormItem>
                 <FormLabel>メールアドレス</FormLabel>
                 <FormInput
@@ -160,8 +161,8 @@ export default function Home() {
                   required
                 ></FormInput>
               </FormItem>
-            </Fade>
-            <Fade bottom distance="30px">
+            </StyledFade>
+            <StyledFade bottom distance="30px">
               <FormItem>
                 <LabelWrapper>
                   <FormLabel>あなたのfacebookのURL</FormLabel>
@@ -177,18 +178,16 @@ export default function Home() {
                   required
                 ></FormInput>
               </FormItem>
-            </Fade>
-            <Fade bottom distance="30px">
+            </StyledFade>
+            <StyledFade bottom distance="30px">
+              <SubmitButton type="submit">送信</SubmitButton>
+            </StyledFade>
+            <StyledFade bottom distance="30px">
               <PrivacyPolicy>
                 <span onClick={handlePrivacy}>プライバシーポリシー</span>
                 はこちら
               </PrivacyPolicy>
-            </Fade>
-            <Fade bottom distance="30px">
-              <SubmitButton type="submit">
-                送信
-              </SubmitButton>
-            </Fade>
+            </StyledFade>
           </FormContents>
         </FormWrapper>
       </Wrapper>
@@ -236,6 +235,11 @@ const Para = styled.div`
   margin-bottom: 48px;
   max-width: 800px;
 `
+const StyledFade = withReveal(styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`, <Fade bottom distance={"30px"} />);
 
 const FormWrapper = styled.div`
   background: linear-gradient(135deg, #3c8ce7 0%, #00eaff 100%);
@@ -262,7 +266,7 @@ const Bubble = styled.img`
   right: 0;
   width: 40%;
   top: -80px;
-  max-width: 200px;
+  max-width: 170px;
 `
 
 const FormItem = styled.div`
@@ -271,6 +275,7 @@ const FormItem = styled.div`
   margin: 30px 20px;
   max-width: 800px;
   flex-direction: column;
+  width: 100%;
 `
 
 const FormLabel = styled.p`
@@ -323,4 +328,5 @@ const SubmitButton = styled.button`
   text-align: center;
   font-weight: bold;
   width: calc(100% - 40px);
+  max-width: 800px;
 `
