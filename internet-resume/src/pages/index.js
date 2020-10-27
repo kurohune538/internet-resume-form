@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useWindowSize } from "react-use"
 import Layout from "../components/layout"
-import styled from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import Rodal from "rodal"
@@ -219,11 +219,28 @@ const Title = styled.div`
   color: #1c4c9e;
 `
 
+const floatAnime = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
+
+const animeStyle = css`
+  animation: ${floatAnime} 2s ease-in-out infinite;
+`;
 const CursorIcon = styled.div`
   font-size: 4rem;
   line-height: 1.5rem;
   width: 100%;
   text-align: center;
+  ${animeStyle}
 `
 
 const Para = styled.div`
