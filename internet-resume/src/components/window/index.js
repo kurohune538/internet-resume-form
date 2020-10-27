@@ -160,6 +160,7 @@ const Window = (props) => {
           width={props.width}
           height={props.height}
           zIndex={props.zIndex}
+          className="handle"
         >
             {props.isHelp || props.isPrivacy ? (
               <HelpStatusBar>
