@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 import HelpWindow from "./helpWindow"
+import PrivacyWindow from "./privacyWindow";
 
 const windowGap = 5
 const refreshSec = 30000
@@ -36,6 +37,12 @@ const Window = (props) => {
   const handleClose = () => {
     props.handleClose();
     console.log("close")
+  }
+  const closePrivacy = () => {
+    props.closePrivacy();
+  }
+  const openPrivacy = () => {
+    props.openPrivacy();
   }
   useEffect(() => {
     if (isSubmitted) {
@@ -154,11 +161,11 @@ const Window = (props) => {
           height={props.height}
           zIndex={props.zIndex}
         >
-            {props.isHelp ? (
+            {props.isHelp || props.isPrivacy ? (
               <HelpStatusBar>
                 <HelpCloseBtn
                   src="../helpClose.png"
-                  onClick={() => handleClose()}
+                  onClick={props.isHelp ? () => handleClose() : () => closePrivacy()}
                   className="help"
                 ></HelpCloseBtn>
                 <strong>
@@ -250,7 +257,7 @@ const Window = (props) => {
                       />
                     </InputItem>
                     <PrivacyPolicy>
-                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span>プライバシーポリシー</span>に同意
+                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span onClick={() => openPrivacy()}>プライバシーポリシー</span>に同意
                     </PrivacyPolicy>
                     <SubmitButton type="submit" name="button" disabled={formDisabled} className="formItem">
                       送信
@@ -264,9 +271,14 @@ const Window = (props) => {
               )}
             </InsideWindow>
           )}
+          {props.isPrivacy && 
+            <InsideWindow className="handle">
+              <PrivacyWindow className="formItem" />
+            </InsideWindow>
+          }
           {props.isHelp && (
             <InsideWindow className="handle">
-              <HelpWindow />
+              <HelpWindow className="formItem" />
             </InsideWindow>
           )}
           {props.isStrings && (

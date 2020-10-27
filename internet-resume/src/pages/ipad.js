@@ -8,12 +8,15 @@ export default function Home() {
   // 1194 x 760 for iPad Pro Safari
   const { width, height } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false)
+  const [isClosePrivacyWindow, closePrivacyWindow] = useState(false)
   const [formPosX, changeFormPosX] = useState(Math.random() * 754)
   const [formPosY, changeFormPosY] = useState(Math.random() * 140)
   const [refreshPosX, changeRefreshPosX] = useState(Math.random() * 1034)
   const [refreshPosY, changeRefreshPosY] = useState(Math.random() * 560)
   const [helpPosX, changeHelpPosX] = useState(Math.random() * 834)
   const [helpPosY, changeHelpPosY] = useState(Math.random() * 283)
+  const [privacyPosX, changePrivacyPosX] = useState(Math.random() * 834)
+  const [privacyPosY, changePrivacyPosY] = useState(Math.random() * 283)
   const [sunrisePosX, changeSunrisePosX] = useState(Math.random() * 834)
   const [sunrisePosY, changeSunrisePosY] = useState(Math.random() * 538)
   const [stringPosX, changeStringPosX] = useState(Math.random() * 1016)
@@ -35,6 +38,8 @@ export default function Home() {
     changeRefreshPosY(Math.random() * 560)
     changeHelpPosX(Math.random() * 834)
     changeHelpPosY(Math.random() * 283)
+    changePrivacyPosX(Math.random() * 834)
+    changePrivacyPosY(Math.random() * 283)
     changeSunrisePosX(Math.random() * 834)
     changeSunrisePosY(Math.random() * 538)
     changeStringPosX(Math.random() * 1016)
@@ -97,6 +102,7 @@ export default function Home() {
           width={440}
           height={620}
           openHelp={() => closeWindow(true)}
+          openPrivacy={() => closePrivacyWindow(true)}
           handleClose={() => closeWindow(false)}
           isForm={true}
           zIndex={8}
@@ -115,6 +121,16 @@ export default function Home() {
             height={477}
             handleClose={() => closeWindow(false)}
             isHelp={true}
+            zIndex={100}
+          />
+        ) : null}
+        {isClosePrivacyWindow ? (
+          <Window
+            position={{ x: privacyPosX, y: privacyPosY }}
+            width={360}
+            height={477}
+            closePrivacy={() => closePrivacyWindow(false)}
+            isPrivacy={true}
             zIndex={100}
           />
         ) : null}
