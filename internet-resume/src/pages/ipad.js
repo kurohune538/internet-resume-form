@@ -3,6 +3,7 @@ import { useWindowSize } from "react-use"
 import Layout from "../components/layout"
 import Window from "../components/window"
 import styled from "styled-components"
+import Draggable from "react-draggable"
 
 export default function Home() {
   // 1194 x 760 for iPad Pro Safari
@@ -58,7 +59,12 @@ export default function Home() {
   return (
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={wrapperHeight}>
+      <Draggable
+      handle=""
+      cancel=""
+    >
         <Donut src="../donut.png" />
+        </Draggable>
         <Window
           position={{ x: stringPosX, y: stringPosY }}
           width={178}
