@@ -144,8 +144,8 @@ const Window = (props) => {
       onStart={() => handleStart()}
       onDrag={() => handleDrag()}
       onStop={() => handleStop()}
-      handle="strong"
-      // cancel=".help, .helpButton"
+      handle="strong, .handle"
+      cancel=".help, .helpButton"
     >
       <div>
         <StyledWindow
@@ -181,23 +181,23 @@ const Window = (props) => {
               </strong>
             )}
           {props.isForm && (
-            <InsideWindow isForm={props.isForm}>
+            <InsideWindow isForm={props.isForm} className="handle">
               {isSubmitted ? (
-                <DoneFormWrapper>
-                  <DoneForm>
-                    <DoneTitle>送信完了✌</DoneTitle>
-                    <NowSearchingWrapper>
-                      <BoldText>NOW SEARCHING ... 🔍</BoldText>
-                      <ProgressBar>
-                        <ProgressContent isSubmitted={isSubmitted}></ProgressContent>
-                      </ProgressBar>
-                      <ContentsSentence>ただいま履歴書を作成中です。<br /> 他の作品の展示をまわりながら、 <br /><span>10~15分程お待ちください。</span></ContentsSentence>
-                      <ContentsSentence>プリンターから履歴書が出力されたら、 <br />下の封筒に入れてお持ち帰りください。</ContentsSentence>
-                    </NowSearchingWrapper>
-                  </DoneForm>
-                </DoneFormWrapper>
+                  <DoneFormWrapper>
+                    <DoneForm>
+                      <DoneTitle>送信完了✌</DoneTitle>
+                      <NowSearchingWrapper>
+                        <BoldText>NOW SEARCHING ... 🔍</BoldText>
+                        <ProgressBar>
+                          <ProgressContent isSubmitted={isSubmitted}></ProgressContent>
+                        </ProgressBar>
+                        <ContentsSentence>ただいま履歴書を作成中です。<br /> 他の作品の展示をまわりながら、 <br /><span>10~15分程お待ちください。</span></ContentsSentence>
+                        <ContentsSentence>プリンターから履歴書が出力されたら、 <br />下の封筒に入れてお持ち帰りください。</ContentsSentence>
+                      </NowSearchingWrapper>
+                    </DoneForm>
+                  </DoneFormWrapper>
               ) : (
-                <div>
+                <>
                   <FbForm onSubmit={handleSubmit(submit)}>
                     <InputItem>
                       <LabelWrapper>
@@ -257,27 +257,27 @@ const Window = (props) => {
                     name="dummyIframe"
                     style={{ display: "none" }}
                   ></iframe>
-                </div>
+                </>
               )}
             </InsideWindow>
           )}
           {props.isHelp && (
-            <InsideWindow>
+            <InsideWindow className="handle">
               <HelpWindow />
             </InsideWindow>
           )}
           {props.isStrings && (
-            <InsideWindowFixed>
+            <InsideWindowFixed className="handle">
               <Strings src="../strings.png" />
             </InsideWindowFixed>
           )}
           {props.isSunrise && (
-            <InsideWindowFixed>
+            <InsideWindowFixed className="handle">
               <Sunrise src="../sunrise.png" />
             </InsideWindowFixed>
           )}
           {props.isRefresh && (
-            <InsideWindowFixed>
+            <InsideWindowFixed className="handle">
               <RefreshBg>
                 <RefreshBtn
                   onClick={() => {
