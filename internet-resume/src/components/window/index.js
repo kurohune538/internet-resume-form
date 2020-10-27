@@ -8,7 +8,7 @@ import HelpWindow from "./helpWindow"
 import PrivacyWindow from "./privacyWindow";
 
 const windowGap = 5
-const refreshSec = 30000
+const refreshSec = 30000000
 const windowDuration = 100
 const Window = (props) => {
   const [dragged, changeDragState] = useState(false)
@@ -686,12 +686,12 @@ const lengthStyle = css`
 
 const ProgressContent = styled.div`
 position: absolute;
-left: 0;
-top: 0;
+left: -2px;
+top: -2px;
 width: 0;
 background: #FFABD1;
-border: 1px solid #1C4C9E;
-box-sizing: border-box;
+border: 2px solid #1C4C9E;
+box-sizing: content-box;
 border-radius: 20px;
   height: 100%;
   ${lengthStyle}
