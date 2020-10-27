@@ -246,12 +246,12 @@ const Window = (props) => {
                         onChange={e => urlChanged(e)}
                       />
                     </InputItem>
-                    <SubmitButton type="submit" name="button" disabled={formDisabled}>
-                      送信
-                    </SubmitButton>
                     <PrivacyPolicy>
                       <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked}/><span>プライバシーポリシー</span>に同意
                     </PrivacyPolicy>
+                    <SubmitButton type="submit" name="button" disabled={formDisabled}>
+                      送信
+                    </SubmitButton>
                   </FbForm>
                   <iframe
                     name="dummyIframe"
@@ -482,7 +482,6 @@ const LabelWrapper = styled.div`
 const Label = styled.label`
   color: #1c4c9e;
   font-size: 0.875rem;
-  letter-spacing: 0.44px;
   font-weight: bold;
   margin-bottom: 8px;
 `
@@ -503,8 +502,9 @@ const FormInput = styled.input`
 
 const PrivacyPolicy = styled.p`
   color: #1c4c9e;
-  margin: 20px 0;
+  margin: 8px 0 20px;
   text-align: left;
+  font-size: 0.875rem;
   span {
     text-decoration: underline;
   }
@@ -524,6 +524,7 @@ const SubmitButton = styled.button`
   text-align: center;
   font-weight: bold;
   width: 100%;
+  font-size: 1rem;
 `
 
 const QuestionButton = styled.img`
@@ -590,7 +591,6 @@ const TryTap = styled.div`
   justify-content: center;
   font-size: 1rem;
   line-height: 1.5rem;
-  letter-spacing: 0.44;
   font-weight: bold;
   height: 42px;
   color: #1c4c9e;

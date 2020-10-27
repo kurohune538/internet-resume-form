@@ -130,7 +130,7 @@ export default function Home() {
           <FormContents onSubmit={handleSubmit(submit)}>
             <Fade bottom distance="30px">
               <FormItem>
-                <FormLabel>氏名（漢字）</FormLabel>
+                <FormLabel>フルネーム（漢字）</FormLabel>
                 <FormInput
                   placeholder="山田 太郎"
                   name="name"
@@ -141,7 +141,7 @@ export default function Home() {
             </Fade>
             <Fade bottom distance="30px">
               <FormItem>
-                <FormLabel>NAME（ローマ字）</FormLabel>
+                <FormLabel>フルネーム（ローマ字）</FormLabel>
                 <FormInput
                   placeholder="Yamada Taro"
                   name="enName"
@@ -164,7 +164,7 @@ export default function Home() {
             <Fade bottom distance="30px">
               <FormItem>
                 <LabelWrapper>
-                  <FormLabel>あなたのFacebookのURL</FormLabel>
+                  <FormLabel>あなたのfacebookのURL</FormLabel>
                   <QuestionButton
                     src="./question.png"
                     onClick={() => updateFbModal(true)}
@@ -264,7 +264,6 @@ const FormItem = styled.div`
 const FormLabel = styled.p`
   color: #fff;
   font-size: 0.875rem;
-  letter-spacing: 0.44px;
   font-weight: bold;
   margin-bottom: 8px;
 `

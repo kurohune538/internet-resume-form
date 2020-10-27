@@ -5,7 +5,7 @@ import Window from "../components/window"
 import styled from "styled-components"
 
 export default function Home() {
-  const { height = 1194 } = useWindowSize()
+  const { width, height } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false)
   const [formPosX, changeFormPosX] = useState(Math.random() * 650)
   const [formPosY, changeFormPosY] = useState(Math.random() * 210)
@@ -52,6 +52,7 @@ export default function Home() {
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={wrapperHeight}>
         <Donut src="../donut.png" />
+        <div>{width} {height}</div>
         <Window
           position={{ x: stringPosX, y: stringPosY }}
           width={178}
