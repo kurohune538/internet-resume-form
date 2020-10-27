@@ -8,7 +8,7 @@ import HelpWindow from "./helpWindow"
 import PrivacyWindow from "./privacyWindow";
 
 const windowGap = 5
-const refreshSec = 30000000
+const refreshSec = 30000
 const windowDuration = 100
 const Window = (props) => {
   const [dragged, changeDragState] = useState(false)
@@ -188,7 +188,7 @@ const Window = (props) => {
               </strong>
             )}
           {props.isForm && (
-            <InsideWindow isForm={props.isForm} className="handle">
+            <InsideWindowForm isForm={props.isForm} className="handle">
               {isSubmitted ? (
                   <DoneFormWrapper>
                     <DoneForm>
@@ -269,7 +269,7 @@ const Window = (props) => {
                   ></iframe>
                 </>
               )}
-            </InsideWindow>
+            </InsideWindowForm>
           )}
           {props.isPrivacy && 
             <InsideWindow className="formItem">
@@ -300,7 +300,7 @@ const Window = (props) => {
                     window.location.href = "/ipad"
                   }}
                 >
-                  <Refresh src="../refresh.png" refresh={isRefreshPressed} />
+                  <Refresh src="../refresh.png" refresh={isRefreshPressed} className="formItem"　/>
                 </RefreshBtn>
               </RefreshBg>
               <TryTap>👆TRY TAP👆</TryTap>
@@ -385,7 +385,7 @@ const StyledWindow = styled.div`
 
 const InsideWindow = styled.div`
   width: calc(100% - 16px);
-  height: calc(100% - 32px);
+  height: calc(100% - 38px);
   background: ${props => (props.isForm ? "" : "#fff")};
   background-image: ${props => (props.isForm ? 'url("../formBg.png")' : "")};
   background-position: center;
@@ -398,8 +398,14 @@ const InsideWindow = styled.div`
   margin: 0 8px 8px 8px;
   overflow: scroll;
 `
+const InsideWindowForm = styled(InsideWindow)`
+  height: calc(100% - 32px);
+
+`;
 const InsideWindowFixed = styled(InsideWindow)`
   overflow: hidden;
+  height: calc(100% - 32px);
+
 `
 
 const StatusBar = styled.div`

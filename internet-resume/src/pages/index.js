@@ -97,7 +97,7 @@ export default function Home() {
               RIREKISYO
             </Title>
           </Jello>
-          <CursorIcon>&#x1f447;</CursorIcon>
+          <CursorIcon>👇</CursorIcon>
         </Top>
         <Fade bottom distance="30px">
           <Para>
@@ -106,18 +106,18 @@ export default function Home() {
         </Fade>
         <Fade bottom distance="30px">
           <Para>
-            しかし、ネット上に存在する情報は必ずしも本人の意図通りと限らず、その推測が現実のあなたと乖離している場合もあります。私たちの考える距離の弱みとは、実態が見えなくなることで推測が先行してしまうこと。
+            しかし、ネット上に存在する情報は必ずしも本人の意図通りとは限らず、現実のあなたと乖離している場合もあります。私たちの考える距離の弱みとは、実態が見えなくなることで他者からの推測があなたのすべてになってしまう恐れがあることです。
           </Para>
         </Fade>
         {/* ここに画像 */}
         <Fade bottom distance="30px">
           <Para>
-            この作品では、インターネット上の情報を頼りに私たちがあなたの履歴書を作ります。履歴書は第三者があなたを知り、推測するためのメディアです。通常、履歴書はパーソナルでクローズドな情報ですが、インターネット履歴書は公開されたパブリックな情報だけをつなぎ合わせています。
+            この作品では、私たちがあなたの履歴書を作ります。履歴書は第三者があなたを知り、推測するためのメディアです。通常の履歴書はクローズドな情報ですが、インターネット履歴書はネット上にあるパブリックな情報だけをつなぎ合わせて作成されます。
           </Para>
         </Fade>
         <Fade bottom distance="30px">
           <Para>
-            何も見つからず真っ白な人もいれば、予想外の情報が載っているかもしれません。インターネットのあなたは、あなた自身とほとんど同じでしょうか？それとも全く違う別人でしょうか？
+            何も見つからず真っ白な人も、予想外の情報が載っている人もいるはずです。インターネットのあなたは、あなた自身と同じ人でしょうか？それとも全く別人でしょうか？
           </Para>
         </Fade>
         <FormWrapper>
@@ -186,7 +186,7 @@ export default function Home() {
             </Fade>
             <Fade bottom distance="30px">
               <SubmitButton type="submit">
-                プライバシーポリシーに同意して送信
+                送信
               </SubmitButton>
             </Fade>
           </FormContents>
@@ -200,6 +200,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  justify-content: center;
 `
 const Top = styled.div`
   display: flex;
@@ -222,6 +223,8 @@ const Title = styled.div`
 const CursorIcon = styled.div`
   font-size: 4rem;
   line-height: 1.5rem;
+  width: 100%;
+  text-align: center;
 `
 
 const Para = styled.div`
@@ -231,6 +234,7 @@ const Para = styled.div`
   margin: 0 16px;
   font-weight: 400;
   margin-bottom: 48px;
+  max-width: 800px;
 `
 
 const FormWrapper = styled.div`
@@ -238,6 +242,7 @@ const FormWrapper = styled.div`
   padding: 80px 0 250px;
   position: relative;
   margin-top: 30px;
+  width: 100%;
 `
 
 const ParaWhite = styled(Para)`
@@ -246,6 +251,10 @@ const ParaWhite = styled(Para)`
 
 const FormContents = styled.form`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 `
 
 const Bubble = styled.img`
@@ -253,12 +262,15 @@ const Bubble = styled.img`
   right: 0;
   width: 40%;
   top: -80px;
+  max-width: 200px;
 `
 
 const FormItem = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 30px 20px;
+  max-width: 800px;
+  flex-direction: column;
 `
 
 const FormLabel = styled.p`
