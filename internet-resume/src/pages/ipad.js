@@ -5,46 +5,48 @@ import Window from "../components/window"
 import styled from "styled-components"
 
 export default function Home() {
+  // 1194 x 760 for iPad Pro Safari
   const { width, height } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false)
-  const [formPosX, changeFormPosX] = useState(Math.random() * 650)
-  const [formPosY, changeFormPosY] = useState(Math.random() * 210)
-  const [refreshPosX, changeRefreshPosX] = useState(Math.random() * 1000)
-  const [refreshPosY, changeRefreshPosY] = useState(Math.random() * 600)
-  const [helpPosX, changeHelpPosX] = useState(Math.random() * 730)
-  const [helpPosY, changeHelpPosY] = useState(Math.random() * 350)
-  const [sunrisePosX, changeSunrisePosX] = useState(Math.random() * 720)
-  const [sunrisePosY, changeSunrisePosY] = useState(Math.random() * 550)
-  const [stringPosX, changeStringPosX] = useState(Math.random() * 900)
-  const [stringPosY, changeStringPosY] = useState(Math.random() * 600)
-  const [wrapperHeight, changeHeight] = useState(600);
-  const [eyePosX, changeEyePosX] = useState(Math.random() * 850)
-  const [eyePosY, changeEyePosY] = useState(Math.random() * 560)
-  const [nosePosX, changeNosePosX] = useState(Math.random() * 730)
-  const [nosePosY, changeNosePosY] = useState(Math.random() * 400)
-  const [mousePosX, changeMousePosX] = useState(Math.random() * 700)
-  const [mousePosY, changeMousePosY] = useState(Math.random() * 600)
-  const [otherPosX, changeOtherPosX] = useState(Math.random() * 760)
-  const [otherPosY, changeOtherPosY] = useState(Math.random() * 560)
+  const [formPosX, changeFormPosX] = useState(Math.random() * 754)
+  const [formPosY, changeFormPosY] = useState(Math.random() * 140)
+  const [refreshPosX, changeRefreshPosX] = useState(Math.random() * 1034)
+  const [refreshPosY, changeRefreshPosY] = useState(Math.random() * 560)
+  const [helpPosX, changeHelpPosX] = useState(Math.random() * 834)
+  const [helpPosY, changeHelpPosY] = useState(Math.random() * 283)
+  const [sunrisePosX, changeSunrisePosX] = useState(Math.random() * 834)
+  const [sunrisePosY, changeSunrisePosY] = useState(Math.random() * 538)
+  const [stringPosX, changeStringPosX] = useState(Math.random() * 1016)
+  const [stringPosY, changeStringPosY] = useState(Math.random() * 582)
+  const [eyePosX, changeEyePosX] = useState(Math.random() * 874)
+  const [eyePosY, changeEyePosY] = useState(Math.random() * 520)
+  const [nosePosX, changeNosePosX] = useState(Math.random() * 911)
+  const [nosePosY, changeNosePosY] = useState(Math.random() * 360)
+  const [mousePosX, changeMousePosX] = useState(Math.random() * 894)
+  const [mousePosY, changeMousePosY] = useState(Math.random() * 994)
+  const [otherPosX, changeOtherPosX] = useState(Math.random() * 954)
+  const [otherPosY, changeOtherPosY] = useState(Math.random() * 520)
+  const [wrapperHeight, changeHeight] = useState(760);
+
   useEffect(() => {
-    changeFormPosX(Math.random() * 1000)
-    changeFormPosY(Math.random() * 600)
-    changeRefreshPosX(Math.random() * 1000)
-    changeRefreshPosY(Math.random() * 600)
-    changeHelpPosX(Math.random() * 730)
-    changeHelpPosY(Math.random() * 350)
-    changeSunrisePosX(Math.random() * 720)
-    changeSunrisePosY(Math.random() * 550)
-    changeStringPosX(Math.random() * 900)
-    changeStringPosY(Math.random() * 600)
-    changeEyePosX(Math.random() * 850)
-    changeEyePosY(Math.random() * 560)
-    changeNosePosX(Math.random() * 730)
-    changeNosePosY(Math.random() * 400)
-    changeMousePosX(Math.random() * 700)
-    changeMousePosY(Math.random() * 600)
-    changeOtherPosX(Math.random() * 760)
-    changeOtherPosY(Math.random() * 560)
+    changeFormPosX(Math.random() * 754)
+    changeFormPosY(Math.random() * 140)
+    changeRefreshPosX(Math.random() * 1034)
+    changeRefreshPosY(Math.random() * 560)
+    changeHelpPosX(Math.random() * 834)
+    changeHelpPosY(Math.random() * 283)
+    changeSunrisePosX(Math.random() * 834)
+    changeSunrisePosY(Math.random() * 538)
+    changeStringPosX(Math.random() * 1016)
+    changeStringPosY(Math.random() * 582)
+    changeEyePosX(Math.random() * 874)
+    changeEyePosY(Math.random() * 520)
+    changeNosePosX(Math.random() * 911)
+    changeNosePosY(Math.random() * 360)
+    changeMousePosX(Math.random() * 894)
+    changeMousePosY(Math.random() * 994)
+    changeOtherPosX(Math.random() * 954)
+    changeOtherPosY(Math.random() * 520)
 
     changeHeight(height);
   }, [])
@@ -52,7 +54,6 @@ export default function Home() {
     <Layout overflow="hidden" maxWidth="1336px">
       <Wrapper height={wrapperHeight}>
         <Donut src="../donut.png" />
-        <div>{width} {height}</div>
         <Window
           position={{ x: stringPosX, y: stringPosY }}
           width={178}
@@ -108,14 +109,14 @@ export default function Home() {
           zIndex={9}
         />
         {isCloseHelpWindow ? (
-            <Window
-              position={{ x: helpPosX, y: helpPosY }}
-              width={360}
-              height={477}
-              handleClose={() => closeWindow(false)}
-              isHelp={true}
-              zIndex={100}
-            />
+          <Window
+            position={{ x: helpPosX, y: helpPosY }}
+            width={360}
+            height={477}
+            handleClose={() => closeWindow(false)}
+            isHelp={true}
+            zIndex={100}
+          />
         ) : null}
       </Wrapper>
     </Layout>

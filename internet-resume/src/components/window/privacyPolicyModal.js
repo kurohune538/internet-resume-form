@@ -124,7 +124,7 @@ const PrivacyPolicyModal = ({ handleCloseModal }) => {
           <br />
           第10条（お問い合わせ窓口）
           <br />
-          本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。団体員　小宮慎之介・石塚理華：メールアドレス
+          本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。団体員　小宮慎之介・石塚理華：メールアドレス internetrirekisho@gmail.com
         </Contents>
       </HelpWrapper>
     </Wrapper>
