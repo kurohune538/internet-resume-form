@@ -145,7 +145,7 @@ const Window = (props) => {
       onDrag={() => handleDrag()}
       onStop={() => handleStop()}
       handle="strong, .handle"
-      cancel=".help, .helpButton"
+      cancel=".help, .helpButton, .formItem"
     >
       <div>
         <StyledWindow
@@ -211,6 +211,7 @@ const Window = (props) => {
                         required
                         ref={register()}
                         onChange={e => nameChanged(e)}
+                        className="formItem"
                       />
                     </InputItem>
                     <InputItem>
@@ -225,6 +226,7 @@ const Window = (props) => {
                         required
                         ref={register()}
                         onChange={e => enNameChanged(e)}
+                        className="formItem"
                       />
                     </InputItem>
                     <InputItem>
@@ -244,12 +246,13 @@ const Window = (props) => {
                         required
                         ref={register()}
                         onChange={e => urlChanged(e)}
+                        className="formItem"
                       />
                     </InputItem>
                     <PrivacyPolicy>
-                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked}/><span>プライバシーポリシー</span>に同意
+                      <input type="checkbox" onChange={e => changeChecked(e)} checked={isChecked} className="formItem"/><span>プライバシーポリシー</span>に同意
                     </PrivacyPolicy>
-                    <SubmitButton type="submit" name="button" disabled={formDisabled}>
+                    <SubmitButton type="submit" name="button" disabled={formDisabled} className="formItem">
                       送信
                     </SubmitButton>
                   </FbForm>
