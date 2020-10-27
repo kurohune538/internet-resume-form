@@ -8,12 +8,13 @@ module.exports = {
   /* Your site config here */
   plugins: [
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        google: {
-          families: ["Noto Sans JP:400, 500, 700"],
-        },
-      },
+        fonts: [
+          `Noto Sans JP\:300,400,500,700` // you can also specify font weights and styles
+        ],
+        display: 'swap'
+      }
     },
     "gatsby-plugin-styled-components",
   ],
