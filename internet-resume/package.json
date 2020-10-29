@@ -26,6 +26,7 @@
     "react-hook-form": "^6.9.5",
     "react-reveal": "^1.2.2",
     "react-use": "^15.3.4",
+    "react-video-tag": "^0.0.10",
     "rodal": "^1.8.1",
     "styled-components": "^5.2.0"
   },

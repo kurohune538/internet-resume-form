@@ -6,6 +6,7 @@ import axios from "axios"
 
 import HelpWindow from "./helpWindow"
 import PrivacyWindow from "./privacyWindow"
+import { videoTagString, VideoTag } from "react-video-tag"
 
 const windowGap = 5
 const refreshSec = 30000
@@ -305,15 +306,12 @@ const Window = props => {
             <InsideWindowForm>
               <Video
                 loop
-                autoplay
+                autoPlay
                 muted
                 playsInline
-                preload="none"
-                width="550"
-                height="367"
-              >
-                <source src={props.src} type="video/webm"></source>
-              </Video>
+                src={props.src}
+                type="video/webm"
+              ></Video>
             </InsideWindowForm>
           )}
           {props.isPrivacy && (
@@ -514,9 +512,10 @@ const Bar = styled.div`
     margin-bottom: 0;
   }
 `
-const Video = styled.video`
+const Video = styled(VideoTag)`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `
 
 const BugWindow = styled.div`

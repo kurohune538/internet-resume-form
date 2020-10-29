@@ -87,7 +87,7 @@ export default function Home() {
           height={240}
           zIndex={5}
           isVideo={true}
-          src={EarVideo}
+          src={HandVideo}
         />
         <Window
           position={{ x: nosePosX, y: nosePosY }}
@@ -95,23 +95,23 @@ export default function Home() {
           height={400}
           zIndex={4}
           isVideo={true}
-          src={HandVideo}
+          src={EyeVideo2}
         />
         <Window
           position={{ x: mousePosX, y: mousePosY }}
           width={300}
-          height={200}
+          height={400}
           zIndex={3}
           isVideo={true}
-          src={EyeVideo}
+          src={LegVideo}
         />
         <Window
           position={{ x: otherPosX, y: otherPosY }}
-          width={240}
-          height={240}
+          width={464}
+          height={138}
           zIndex={2}
           isVideo={true}
-          src={EyeVideo2}
+          src={EyeVideo}
         />
         <Window
           position={{ x: formPosX, y: formPosY }}
