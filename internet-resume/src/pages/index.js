@@ -5,7 +5,7 @@ import styled, { keyframes, css } from "styled-components"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import Rodal from "rodal"
-import withReveal from "react-reveal/withReveal";
+import withReveal from "react-reveal/withReveal"
 import Fade from "react-reveal/Fade"
 import Jello from "react-reveal/Jello"
 
@@ -180,14 +180,20 @@ export default function Home() {
               </FormItem>
             </StyledFade>
             <StyledFade bottom distance="30px">
-              <SubmitButton type="submit">送信</SubmitButton>
-            </StyledFade>
-            <StyledFade bottom distance="30px">
               <PrivacyPolicy>
+                <input
+                  type="checkbox"
+                  // onChange={e => changeChecked(e)}
+                  // checked={isChecked}
+                />
                 <span onClick={handlePrivacy}>プライバシーポリシー</span>
-                はこちら
+                に同意
               </PrivacyPolicy>
             </StyledFade>
+            <StyledFade bottom distance="30px">
+              <SubmitButton type="submit">送信</SubmitButton>
+            </StyledFade>
+            <StyledFade bottom distance="30px"></StyledFade>
           </FormContents>
         </FormWrapper>
       </Wrapper>
@@ -230,11 +236,11 @@ const floatAnime = keyframes`
   100% {
     transform: translateY(0px);
   }
-`;
+`
 
 const animeStyle = css`
   animation: ${floatAnime} 2s ease-in-out infinite;
-`;
+`
 const CursorIcon = styled.div`
   font-size: 4rem;
   line-height: 1.5rem;
@@ -252,11 +258,14 @@ const Para = styled.div`
   margin-bottom: 48px;
   max-width: 800px;
 `
-const StyledFade = withReveal(styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-`, <Fade bottom distance={"30px"} />);
+const StyledFade = withReveal(
+  styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  `,
+  <Fade bottom distance={"30px"} />
+)
 
 const FormWrapper = styled.div`
   background: linear-gradient(135deg, #3c8ce7 0%, #00eaff 100%);
@@ -268,6 +277,7 @@ const FormWrapper = styled.div`
 
 const ParaWhite = styled(Para)`
   color: #fff;
+  margin-bottom: 11px;
 `
 
 const FormContents = styled.form`
@@ -289,7 +299,7 @@ const Bubble = styled.img`
 const FormItem = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 30px 20px;
+  margin: 27px 20px 0;
   max-width: 800px;
   flex-direction: column;
   width: 100%;
@@ -330,7 +340,10 @@ const QuestionButton = styled.img`
 
 const PrivacyPolicy = styled.p`
   color: #fff;
-  text-align: center;
+  text-align: left;
+  font-size: 0.875rem;
+  margin: 35px 20px 20px;
+  width: 100%;
   span {
     text-decoration: underline;
   }
@@ -341,9 +354,10 @@ const SubmitButton = styled.button`
   border-radius: 12px;
   color: #fff;
   padding: 12px;
-  margin: 20px;
+  margin: 0 20px;
   text-align: center;
   font-weight: bold;
+  font-size: 1rem;
   width: calc(100% - 40px);
   max-width: 800px;
 `

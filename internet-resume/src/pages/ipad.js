@@ -7,7 +7,7 @@ import Draggable from "react-draggable"
 
 export default function Home() {
   // 1194 x 760 for iPad Pro Safari
-  const { width, height } = useWindowSize()
+  const { height } = useWindowSize()
   const [isCloseHelpWindow, closeWindow] = useState(false)
   const [isClosePrivacyWindow, closePrivacyWindow] = useState(false)
   const [formPosX, changeFormPosX] = useState(Math.random() * 754)
@@ -30,7 +30,7 @@ export default function Home() {
   const [mousePosY, changeMousePosY] = useState(Math.random() * 994)
   const [otherPosX, changeOtherPosX] = useState(Math.random() * 954)
   const [otherPosY, changeOtherPosY] = useState(Math.random() * 520)
-  const [wrapperHeight, changeHeight] = useState(760)
+  const [wrapperHeight, changeHeight] = useState(850)
 
   useEffect(() => {
     changeFormPosX(Math.random() * 754)
