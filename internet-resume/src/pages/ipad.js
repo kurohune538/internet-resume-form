@@ -4,6 +4,11 @@ import Layout from "../components/layout"
 import Window from "../components/window"
 import styled from "styled-components"
 import Draggable from "react-draggable"
+import EyeVideo from "../assets/eye.webm"
+import EyeVideo2 from "../assets/eye2.webm"
+import EarVideo from "../assets/ear.webm"
+import HandVideo from "../assets/hand.webm"
+import LegVideo from "../assets/leg.webm"
 
 export default function Home() {
   // 1194 x 760 for iPad Pro Safari
@@ -81,24 +86,32 @@ export default function Home() {
           width={320}
           height={240}
           zIndex={5}
+          isVideo={true}
+          src={EarVideo}
         />
         <Window
           position={{ x: nosePosX, y: nosePosY }}
           width={283}
           height={400}
           zIndex={4}
+          isVideo={true}
+          src={HandVideo}
         />
         <Window
           position={{ x: mousePosX, y: mousePosY }}
           width={300}
           height={200}
           zIndex={3}
+          isVideo={true}
+          src={EyeVideo}
         />
         <Window
           position={{ x: otherPosX, y: otherPosY }}
           width={240}
           height={240}
           zIndex={2}
+          isVideo={true}
+          src={EyeVideo2}
         />
         <Window
           position={{ x: formPosX, y: formPosY }}

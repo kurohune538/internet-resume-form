@@ -301,6 +301,21 @@ const Window = props => {
               )}
             </InsideWindowForm>
           )}
+          {props.isVideo && (
+            <InsideWindowForm>
+              <Video
+                loop
+                autoplay
+                muted
+                playsInline
+                preload="none"
+                width="550"
+                height="367"
+              >
+                <source src={props.src} type="video/webm"></source>
+              </Video>
+            </InsideWindowForm>
+          )}
           {props.isPrivacy && (
             <InsideWindow className="formItem">
               <PrivacyWindow />
@@ -341,7 +356,7 @@ const Window = props => {
             </InsideWindowFixed>
           )}
         </StyledWindow>
-        {dragged && (
+        {/* {dragged && (
           <>
             {win1 && (
               <BugWindow
@@ -399,7 +414,7 @@ const Window = props => {
               />
             )}
           </>
-        )}
+        )} */}
       </div>
     </Draggable>
   )
@@ -498,6 +513,10 @@ const Bar = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
+`
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
 `
 
 const BugWindow = styled.div`
