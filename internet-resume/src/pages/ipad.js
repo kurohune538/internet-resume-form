@@ -4,11 +4,11 @@ import Layout from "../components/layout"
 import Window from "../components/window"
 import styled from "styled-components"
 import Draggable from "react-draggable"
-import EyeVideo from "../assets/eye.webm"
-import EyeVideo2 from "../assets/eye2.webm"
-import EarVideo from "../assets/ear.webm"
-import HandVideo from "../assets/hand.webm"
-import LegVideo from "../assets/leg.webm"
+import EyeVideo from "../assets/eye.gif"
+import EyeVideo2 from "../assets/eye2.gif"
+import EarVideo from "../assets/ear.gif"
+import HandVideo from "../assets/hand.gif"
+import LegVideo from "../assets/leg.gif"
 
 export default function Home() {
   // 1194 x 760 for iPad Pro Safari
@@ -35,6 +35,8 @@ export default function Home() {
   const [mousePosY, changeMousePosY] = useState(Math.random() * 994)
   const [otherPosX, changeOtherPosX] = useState(Math.random() * 954)
   const [otherPosY, changeOtherPosY] = useState(Math.random() * 520)
+  const [otherPos2X, changeOtherPos2X] = useState(Math.random() * 954)
+  const [otherPos2Y, changeOtherPos2Y] = useState(Math.random() * 520)
   const [wrapperHeight, changeHeight] = useState(850)
 
   useEffect(() => {
@@ -58,6 +60,8 @@ export default function Home() {
     changeMousePosY(Math.random() * 994)
     changeOtherPosX(Math.random() * 954)
     changeOtherPosY(Math.random() * 520)
+    changeOtherPos2X(Math.random() * 954)
+    changeOtherPos2Y(Math.random() * 520)
 
     changeHeight(height)
   }, [])
@@ -112,6 +116,14 @@ export default function Home() {
           zIndex={2}
           isVideo={true}
           src={EyeVideo}
+        />
+        <Window
+          position={{ x: otherPos2X, y: otherPos2Y }}
+          width={240}
+          height={240}
+          zIndex={2}
+          isVideo={true}
+          src={EarVideo}
         />
         <Window
           position={{ x: formPosX, y: formPosY }}

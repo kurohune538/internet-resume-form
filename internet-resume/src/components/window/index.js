@@ -303,16 +303,9 @@ const Window = props => {
             </InsideWindowForm>
           )}
           {props.isVideo && (
-            <InsideWindowForm>
-              <Video
-                loop
-                autoPlay
-                muted
-                playsInline
-                src={props.src}
-                type="video/webm"
-              ></Video>
-            </InsideWindowForm>
+            <InsideWindowFixedVideo>
+              <GifVideo src={props.src} />
+            </InsideWindowFixedVideo>
           )}
           {props.isPrivacy && (
             <InsideWindow className="formItem">
@@ -453,6 +446,8 @@ const InsideWindowFixed = styled(InsideWindow)`
   height: calc(100% - 32px);
 `
 
+const InsideWindowFixedVideo = styled(InsideWindowFixed)``
+
 const StatusBar = styled.div`
   width: 100%;
   height: 24px;
@@ -512,7 +507,7 @@ const Bar = styled.div`
     margin-bottom: 0;
   }
 `
-const Video = styled(VideoTag)`
+const GifVideo = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
