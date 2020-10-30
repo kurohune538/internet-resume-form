@@ -125,7 +125,7 @@ export default function Home() {
           <Bubble src="./bubble.png"></Bubble>
           <StyledFade bottom distance="30px">
             <ParaWhite>
-              履歴を作成するために必要なすべての項目を記入し、送信ボタンを押してください。数日以内に、ご入力していただいたメールアドレス宛にpdfで履歴書をお送りいたします。
+              履歴書を作成するために必要なすべての項目を記入し、送信ボタンを押してください。数日以内に、ご入力していただいたメールアドレス宛にpdfで履歴書をお送りいたします。
             </ParaWhite>
           </StyledFade>
           <FormContents onSubmit={handleSubmit(submit)}>
